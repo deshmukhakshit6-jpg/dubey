@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Dubey Dental Clinic | Expert Dental Care in Bhopal</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-blue: #0b6bcb;
+            --primary-dark: #1a202c;
+            --light-blue: #f0f7ff;
+            
+            /* Glassmorphism Variables */
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-bg-dark: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.7);
+            --glass-border-dark: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+            --glass-blur: blur(12px);
+
+            --text-main: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px; 
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: #eef2f6;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,0) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,0) 0, transparent 50%);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- SCROLL REVEAL ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.6s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: all 0.6s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* --- TYPOGRAPHY & BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--primary-dark);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:hover { background-color: #f0f0f0; transform: translateY(-2px); }
+
+        .btn-primary i {
+            background: var(--primary-dark);
+            color: var(--white);
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-left: -5px;
+        }
+
+        .btn-blue {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(11, 107, 203, 0.2);
+        }
+
+        .btn-blue:hover { background-color: #0854a0; transform: translateY(-2px); }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(26px, 3.5vw, 34px);
+            color: var(--primary-dark);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            color: var(--primary-blue);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .section-header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* --- FIXED HEADER / NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 15px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            padding: 10px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--white);
+            z-index: 1001;
+            transition: var(--transition);
+        }
+
+        .logo i { font-size: 28px; color: #7ec8e3; transition: var(--transition); }
+
+        header.scrolled .logo { color: var(--primary-dark); }
+        header.scrolled .logo i { color: var(--primary-blue); }
+
+        .nav-links {
+            display: none;
+            gap: 25px;
+            padding: 10px 30px;
+            background: var(--glass-bg-dark);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border-dark);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .nav-links a { transition: var(--transition); }
+        .nav-links a:hover { color: #7ec8e3; }
+
+        header.scrolled .nav-links {
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            backdrop-filter: none;
+        }
+        header.scrolled .nav-links a:hover { color: var(--primary-blue); }
+
+        .header-actions {
+            display: none;
+            align-items: center;
+            gap: 15px;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .header-actions .phone-number {
+            font-weight: 600;
+            font-size: 14px;
+            text-align: right;
+            line-height: 1.2;
+        }
+        
+        .header-actions .phone-number span {
+            display: block;
+            font-size: 11px;
+            color: #cbd5e1;
+            font-weight: 400;
+        }
+        
+        header.scrolled .header-actions { color: var(--primary-dark); }
+        header.scrolled .header-actions .phone-number span { color: var(--text-light); }
+
+        .whatsapp-btn {
+            background: white; 
+            color: #1a202c; 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 20px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+        header.scrolled .whatsapp-btn { background: var(--light-blue); box-shadow: none; }
+        header.scrolled .whatsapp-btn:hover { background: var(--primary-blue); color: white; }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--white);
+            cursor: pointer;
+            z-index: 1001;
+            transition: var(--transition);
+        }
+        header.scrolled .mobile-menu-btn { color: var(--primary-dark); }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0; right: -100%; width: 100%; height: 100vh;
+            background-color: rgba(26, 32, 44, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center; gap: 20px;
+            transition: right 0.3s ease; z-index: 1000;
+        }
+
+        .mobile-nav.active { right: 0; }
+        .mobile-nav a { font-size: 20px; font-weight: 600; color: var(--white); }
+        .mobile-nav .btn { margin-top: 15px; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 80px 0 40px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 41, 66, 0.95) 0%, rgba(15, 41, 66, 0.5) 100%);
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            gap: 20px;
+        }
+
+        .hero-content {
+            text-align: left;
+            max-width: 650px;
+            color: var(--white);
+            padding: 25px;
+            background: var(--glass-bg-dark);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border-dark);
+            border-radius: 20px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 800;
+            line-height: 1.15;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-content h1 span { color: #7ec8e3; }
+
+        .hero-content p {
+            font-size: clamp(14px, 2vw, 16px);
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            background: var(--glass-bg-dark);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border-dark);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: var(--glass-shadow);
+            color: var(--white);
+            width: 100%;
+        }
+
+        .stat-item { text-align: center; }
+        .stat-item h3 { font-size: clamp(20px, 3vw, 28px); font-weight: 700; margin-bottom: 2px; color: #7ec8e3; }
+        .stat-item p { font-size: 10px; color: #e2e8f0; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* --- GLOBAL GLASS CARD STYLE --- */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 16px;
+        }
+
+        /* --- SHARED SECTION PADDING --- */
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .service-card {
+            padding: 20px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.8);
+            border-color: var(--primary-blue);
+        }
+
+        .service-card i {
+            font-size: 24px;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            background: rgba(11, 107, 203, 0.1);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .service-card h3 { font-size: 16px; color: var(--primary-dark); margin-bottom: 8px; }
+        .service-card p { font-size: 13px; color: var(--text-light); margin-bottom: 12px; flex-grow: 1; }
+        .service-card a { font-size: 13px; font-weight: 600; color: var(--primary-blue); display: flex; align-items: center; gap: 5px; }
+
+        /* --- PRICING SECTION --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .pricing-card {
+            padding: 25px 20px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.9); }
+
+        .pricing-card.popular {
+            border: 2px solid var(--primary-blue);
+            background: rgba(240, 247, 255, 0.8);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Popular';
+            position: absolute;
+            top: 12px; right: -25px;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 4px 30px;
+            font-size: 10px;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        .pricing-card h3 { font-size: 18px; color: var(--primary-dark); margin-bottom: 8px; }
+        .pricing-card .price { font-size: 34px; font-weight: 800; color: var(--primary-blue); margin-bottom: 15px; }
+        .pricing-card .price span { font-size: 13px; color: var(--text-light); font-weight: 500; }
+        
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pricing-features li { font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
+        .pricing-features i { color: #10b981; font-size: 12px; }
+
+        /* --- INSURANCE SECTION --- */
+        .insurance-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .insurance-logo {
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .insurance-logo:hover { transform: translateY(-2px); color: var(--primary-dark); }
+        .insurance-logo i { color: var(--primary-blue); }
+
+        /* --- ABOUT SECTION --- */
+        .about {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .about-image {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            padding: 8px;
+        }
+
+        .about-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+
+        .about-content { padding: 25px 20px; }
+        .about-content h2 { font-family: var(--font-heading); font-size: clamp(24px, 4vw, 32px); color: var(--primary-dark); margin-bottom: 12px; }
+        .about-content > p { color: var(--text-light); margin-bottom: 20px; font-size: 14px; }
+
+        .about-features { display: grid; grid-template-columns: 1fr; gap: 10px; }
+
+        .feature-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px; border-radius: 10px;
+            background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.7);
+        }
+
+        .feature-item i { color: var(--primary-blue); font-size: 18px; }
+        .feature-item h4 { font-size: 14px; color: var(--primary-dark); }
+
+        /* --- DOCTORS SECTION --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .team-card {
+            overflow: hidden;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.85); }
+        .team-card img { width: 100%; height: 240px; object-fit: cover; }
+
+        .team-info { padding: 15px; }
+        .team-info h3 { font-size: 18px; margin-bottom: 3px; color: var(--primary-dark); }
+        .team-info p { color: var(--primary-blue); font-size: 12px; font-weight: 600; }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials-grid { display: flex; flex-direction: column; gap: 25px; }
+
+        .testimonial-cards-container {
+            display: flex; gap: 15px; overflow-x: auto;
+            padding-bottom: 15px; scroll-snap-type: x mandatory;
+        }
+
+        .testimonial-cards-container::-webkit-scrollbar { height: 4px; }
+        .testimonial-cards-container::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+
+        .testimonial-card {
+            padding: 20px; min-width: 260px; width: 85vw; max-width: 350px;
+            flex-shrink: 0; scroll-snap-align: center;
+        }
+
+        .testimonial-card p { font-size: 14px; color: var(--text-main); font-style: italic; margin-bottom: 15px; line-height: 1.5; }
+        .client-info { display: flex; align-items: center; gap: 10px; }
+        .client-info img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-blue); }
+        .client-details h4 { font-size: 14px; color: var(--primary-dark); margin-bottom: 2px; }
+        .stars { color: #f5a623; font-size: 11px; }
+
+        /* --- PROCESS SECTION --- */
+        .process-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 30px; }
+
+        .process-step { text-align: center; padding: 20px 15px; transition: var(--transition); }
+        .process-step:hover { transform: translateY(-3px); background: rgba(255,255,255,0.8); }
+
+        .step-number {
+            width: 40px; height: 40px; background: var(--primary-blue); color: var(--white);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: 700; margin: 0 auto 12px;
+            border: 3px solid var(--white); box-shadow: 0 4px 10px rgba(11, 107, 203, 0.3);
+        }
+
+        .process-step h3 { font-size: 16px; color: var(--primary-dark); margin-bottom: 6px; }
+        .process-step p { font-size: 12px; color: var(--text-light); }
+
+        /* --- FAQ SECTION (NO SCROLL REVEAL) --- */
+        .faq-container { max-width: 700px; margin: 0 auto; }
+
+        .faq-item {
+            margin-bottom: 10px; overflow: hidden; transition: var(--transition);
+        }
+
+        .faq-item:hover { border-color: var(--primary-blue); }
+
+        .faq-question {
+            padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark);
+        }
+
+        .faq-question i { color: var(--primary-blue); transition: transform 0.3s ease; font-size: 12px; }
+
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px; color: var(--text-light); font-size: 13px;
+        }
+
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 15px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        /* --- CONTACT SECTION --- */
+        .contact-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-top: 25px; }
+
+        .contact-form-wrapper { padding: 25px 20px; }
+        .contact-form-wrapper h3 { font-size: 18px; color: var(--primary-dark); margin-bottom: 15px; }
+
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--text-main); margin-bottom: 5px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 10px 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px;
+            font-family: var(--font-main); font-size: 13px;
+            background: rgba(255,255,255,0.7); transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--primary-blue);
+            background: var(--white); box-shadow: 0 0 0 3px rgba(11, 107, 203, 0.1);
+        }
+
+        .contact-form-wrapper .btn { width: 100%; padding: 12px; font-size: 14px; }
+
+        .contact-info-wrapper { display: flex; flex-direction: column; gap: 12px; }
+
+        .info-card {
+            display: flex; align-items: flex-start; gap: 15px;
+            padding: 15px; transition: var(--transition);
+        }
+
+        .info-card:hover { transform: translateX(3px); background: rgba(255,255,255,0.8); }
+
+        .info-card i {
+            font-size: 16px; color: var(--white); background: var(--primary-blue);
+            width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; flex-shrink: 0;
+        }
+
+        .info-card h4 { font-size: 14px; color: var(--primary-dark); margin-bottom: 3px; }
+        .info-card p, .info-card a { font-size: 13px; color: var(--text-light); line-height: 1.4; }
+
+        .map-wrapper { border-radius: 12px; overflow: hidden; height: 200px; padding: 6px; }
+        .map-wrapper iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: rgba(26, 32, 44, 0.95);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            color: #a0aec0;
+            padding: 50px 0 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-bottom: 30px; }
+
+        .footer-col h4 { font-size: 15px; color: var(--white); margin-bottom: 15px; font-weight: 600; }
+        .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+        .footer-col ul li a { font-size: 13px; color: #a0aec0; transition: var(--transition); }
+        .footer-col ul li a:hover { color: var(--white); padding-left: 3px; }
+
+        .footer-logo .logo { color: var(--white); }
+        .footer-logo p { font-size: 13px; margin: 12px 0; }
+
+        .social-icons { display: flex; gap: 8px; }
+        .social-icons a {
+            display: flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px; background: rgba(255,255,255,0.1);
+            border-radius: 50%; color: var(--white); transition: var(--transition); font-size: 14px;
+        }
+        .social-icons a:hover { background: var(--primary-blue); transform: translateY(-2px); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            font-size: 12px; text-align: center;
+        }
+
+        .powered-by a { color: #7ec8e3; font-weight: 600; }
+        .powered-by a:hover { text-decoration: underline; }
+        .footer-bottom-links { display: flex; gap: 15px; }
+        .footer-bottom-links a:hover { color: var(--white); }
+
+        /* =========================================
+           MEDIA QUERIES (TABLET & DESKTOP)
+           ========================================= */
+
+        @media (min-width: 768px) {
+            .section-padding { padding: 80px 0; }
+            
+            .hero-stats { padding: 25px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-features { grid-template-columns: repeat(2, 1fr); }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+            
+            .hero-content { padding: 35px; }
+            .hero .container { gap: 30px; }
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu-btn { display: none; }
+            .mobile-nav { display: none; }
+            .nav-links { display: flex; }
+            .header-actions { display: flex; }
+
+            .hero {
+                padding: 120px 0 80px; 
+            }
+            .hero::before {
+                background: linear-gradient(90deg, rgba(15, 41, 66, 0.95) 0%, rgba(15, 41, 66, 0.7) 50%, rgba(15, 41, 66, 0.2) 100%);
+            }
+            .hero .container {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 50px;
+                max-width: 1200px;
+            }
+            .hero-content {
+                flex: 0 0 55%; 
+                max-width: 650px;
+                padding: 45px;
+                background: var(--glass-bg-dark);
+                backdrop-filter: var(--glass-blur);
+                -webkit-backdrop-filter: var(--glass-blur);
+                border: 1px solid var(--glass-border-dark);
+                border-radius: 24px;
+                box-shadow: var(--glass-shadow);
+            }
+            .hero-content h1 {
+                font-size: 54px;
+                line-height: 1.1;
+            }
+            .hero-content p {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+            .hero-stats {
+                flex: 0 0 40%;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                padding: 30px;
+                position: relative;
+                top: 0;
+                transform: none;
+                width: 100%;
+                max-width: none;
+                z-index: 10;
+            }
+            .stat-item { padding: 10px; }
+            .stat-item h3 { font-size: 32px; }
+            .stat-item p { font-size: 12px; }
+
+            .services-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+            
+            .about { flex-direction: row; align-items: center; gap: 50px; }
+            .about-image, .about-content { flex: 1; }
+            .about-content { padding: 35px; }
+
+            .team-grid { grid-template-columns: repeat(3, 1fr); }
+            .process-grid { grid-template-columns: repeat(4, 1fr); }
+            
+            .testimonials-grid { flex-direction: row; align-items: center; gap: 30px; }
+            .testimonials-title { flex: 0 0 250px; }
+            .testimonial-cards-container { flex: 1; overflow-x: visible; }
+            .testimonial-card { width: auto; max-width: none; flex: 1; }
+
+            .contact-form-wrapper { padding: 30px; }
+            .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fixed Header / Navbar -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-tooth"></i>
+                <div>Dubey Dental</div>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#team">Doctors</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="phone-number">
+                    +91 98273 64344
+                    <span>dubeydental@gmail.com</span>
+                </div>
+                <a href="https://wa.me/919827364344" target="_blank" class="whatsapp-btn">
+                    <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn" id="menuToggle" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Overlay -->
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#team">Doctors</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="btn btn-blue">Book Appointment</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content reveal-left glass-panel">
+                <h1>Care That Your <span>Smile</span> Deserves</h1>
+                <p>Book your visit today and experience comfortable, expert dental care tailored to you.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        Book appointment <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Glassmorphism Stats Box -->
+            <div class="hero-stats reveal-right delay-2 glass-panel">
+                <div class="stat-item"><h3>10+</h3><p>Years Experience</p></div>
+                <div class="stat-item"><h3>98%</h3><p>Satisfaction Rate</p></div>
+                <div class="stat-item"><h3>5000+</h3><p>Happy Patients</p></div>
+                <div class="stat-item"><h3>10</h3><p>Expert Staffs</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section-padding" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <div>
+                    <span class="section-subtitle">Our Services</span>
+                    <h2 class="section-title">Comprehensive Care</h2>
+                </div>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card glass-panel reveal delay-1">
+                    <i class="fa-solid fa-tooth"></i>
+                    <h3>General Dentistry</h3>
+                    <p>Routine checkups, cleanings and preventive care.</p>
+                    <a href="#">Learn More &rarr;</a>
+                </div>
+                <div class="service-card glass-panel reveal delay-2">
+                    <i class="fa-solid fa-teeth"></i>
+                    <h3>Orthodontics</h3>
+                    <p>Braces & clear aligners for a straighter smile.</p>
+                    <a href="#">Learn More &rarr;</a>
+                </div>
+                <div class="service-card glass-panel reveal delay-3">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <h3>Dental Implants</h3>
+                    <p>A permanent solution for missing teeth.</p>
+                    <a href="#">Learn More &rarr;</a>
+                </div>
+                <div class="service-card glass-panel reveal delay-1">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h3>Teeth Whitening</h3>
+                    <p>Get a brighter smile in just one visit.</p>
+                    <a href="#">Learn More &rarr;</a>
+                </div>
+                <div class="service-card glass-panel reveal delay-2">
+                    <i class="fa-solid fa-child"></i>
+                    <h3>Kids Dentistry</h3>
+                    <p>Gentle and fun care for your child's smile.</p>
+                    <a href="#">Learn More &rarr;</a>
+                </div>
+                <div class="service-card glass-panel reveal delay-3">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>Cosmetic Dentistry</h3>
+                    <p>Enhance your smile with modern solutions.</p>
+                    <a href="#">Learn More &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section-padding" id="pricing">
+        <div class="container">
+            <div class="section-header reveal" style="align-items: center; text-align: center;">
+                <span class="section-subtitle">Transparent Pricing</span>
+                <h2 class="section-title">Affordable Packages</h2>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card glass-panel reveal delay-1">
+                    <h3>Basic Checkup</h3>
+                    <div class="price">₹499<span>/visit</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Comprehensive Exam</li>
+                        <li><i class="fa-solid fa-check"></i> Digital X-Rays</li>
+                        <li><i class="fa-solid fa-check"></i> Basic Cleaning</li>
+                        <li><i class="fa-solid fa-check"></i> Consultation</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-blue" style="width: 100%;">Book Now</a>
+                </div>
+
+                <div class="pricing-card glass-panel popular reveal delay-2">
+                    <h3>Complete Care</h3>
+                    <div class="price">₹1,999<span>/visit</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Everything in Basic</li>
+                        <li><i class="fa-solid fa-check"></i> Deep Cleaning</li>
+                        <li><i class="fa-solid fa-check"></i> Fluoride Treatment</li>
+                        <li><i class="fa-solid fa-check"></i> Free Follow-up</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-blue" style="width: 100%;">Book Now</a>
+                </div>
+
+                <div class="pricing-card glass-panel reveal delay-3">
+                    <h3>Cosmetic Smile</h3>
+                    <div class="price">₹4,999<span>/visit</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Teeth Whitening</li>
+                        <li><i class="fa-solid fa-check"></i> Scaling & Polishing</li>
+                        <li><i class="fa-solid fa-check"></i> Smile Makeover Plan</li>
+                        <li><i class="fa-solid fa-check"></i> Priority Appointment</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-blue" style="width: 100%;">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header reveal" style="align-items: center; text-align: center;">
+                <span class="section-subtitle">Insurance & Payments</span>
+                <h2 class="section-title">We Accept Major Insurances</h2>
+            </div>
+
+            <div class="insurance-logos reveal delay-2">
+                <div class="insurance-logo glass-panel"><i class="fa-solid fa-shield-halved"></i> Star Health</div>
+                <div class="insurance-logo glass-panel"><i class="fa-solid fa-shield-halved"></i> HDFC Ergo</div>
+                <div class="insurance-logo glass-panel"><i class="fa-solid fa-shield-halved"></i> ICICI Lombard</div>
+                <div class="insurance-logo glass-panel"><i class="fa-solid fa-shield-halved"></i> Niva Bupa</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="container about" id="about">
+        <div class="about-image glass-panel reveal-left">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Dental Clinic Interior">
+        </div>
+
+        <div class="about-content glass-panel reveal-right">
+            <span class="section-subtitle">Why Choose Us</span>
+            <h2>More Than Dental Care</h2>
+            <p>We combine advanced technology with a compassionate approach to deliver exceptional dental care for you and your family.</p>
+            
+            <div class="about-features">
+                <div class="feature-item">
+                    <i class="fa-regular fa-heart"></i>
+                    <h4>Patient Care</h4>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-microscope"></i>
+                    <h4>Modern Tech</h4>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-hands-bubbles"></i>
+                    <h4>Hygienic</h4>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-regular fa-calendar-check"></i>
+                    <h4>Flexible Hours</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section-padding" id="team">
+        <div class="container">
+            <div class="section-header reveal" style="align-items: center; text-align: center;">
+                <span class="section-subtitle">Our Experts</span>
+                <h2 class="section-title">Meet Our Dentists</h2>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card glass-panel reveal delay-1">
+                    <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Dubey">
+                    <div class="team-info">
+                        <h3>Dr. A. K. Dubey</h3>
+                        <p>Chief Dental Surgeon</p>
+                    </div>
+                </div>
+                <div class="team-card glass-panel reveal delay-2">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Priya Sharma">
+                    <div class="team-info">
+                        <h3>Dr. Priya Sharma</h3>
+                        <p>Orthodontist</p>
+                    </div>
+                </div>
+                <div class="team-card glass-panel reveal delay-3">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Rahul Verma">
+                    <div class="team-info">
+                        <h3>Dr. Rahul Verma</h3>
+                        <p>Cosmetic Dentist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header reveal" style="align-items: center; text-align: center;">
+                <span class="section-subtitle">How It Works</span>
+                <h2 class="section-title">Your Journey</h2>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-step glass-panel reveal delay-1">
+                    <div class="step-number">1</div>
+                    <h3>Book Visit</h3>
+                    <p>Call us or fill out the form.</p>
+                </div>
+                <div class="process-step glass-panel reveal delay-2">
+                    <div class="step-number">2</div>
+                    <h3>Consultation</h3>
+                    <p>Meet our doctors for a checkup.</p>
+                </div>
+                <div class="process-step glass-panel reveal delay-3">
+                    <div class="step-number">3</div>
+                    <h3>Treatment Plan</h3>
+                    <p>Get a customized plan for you.</p>
+                </div>
+                <div class="process-step glass-panel reveal delay-1">
+                    <div class="step-number">4</div>
+                    <h3>Healthy Smile</h3>
+                    <p>Receive top-tier treatment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding" id="testimonials">
+        <div class="container testimonials-grid">
+            <div class="testimonials-title reveal-left">
+                <span class="section-subtitle">Testimonials</span>
+                <h2 class="section-title">Patient Stories</h2>
+            </div>
+            
+            <div class="testimonial-cards-container">
+                <div class="testimonial-card glass-panel reveal delay-1">
+                    <p>"The team is amazing! They made my visit so comfortable. Highly recommended!"</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ritika Sharma">
+                        <div class="client-details">
+                            <h4>Ritika Sharma</h4>
+                            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-panel reveal delay-2">
+                    <p>"Professional, friendly and gentle. My smile has never looked better!"</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Amit Verma">
+                        <div class="client-details">
+                            <h4>Amit Verma</h4>
+                            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-panel reveal delay-3">
+                    <p>"Great experience with my kids too. Truly a family-friendly clinic."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Neha Kapoor">
+                        <div class="client-details">
+                            <h4>Neha Kapoor</h4>
+                            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (Scroll Reveal Removed Here) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header reveal" style="align-items: center; text-align: center;">
+                <span class="section-subtitle">FAQ</span>
+                <h2 class="section-title">Questions</h2>
+            </div>
+
+            <div class="faq-container">
+                <!-- Removed 'reveal delay-X' classes from these items -->
+                <div class="faq-item glass-panel">
+                    <div class="faq-question">
+                        <span>Do you accept dental insurance?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we accept most major dental insurance plans. Please contact our front desk to verify coverage.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-panel">
+                    <div class="faq-question">
+                        <span>How often should I get a checkup?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend a professional cleaning and checkup every six months for optimal health.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-panel">
+                    <div class="faq-question">
+                        <span>What about dental emergencies?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Call us immediately at 09827364344 for severe pain or emergencies. We reserve time slots.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-padding" id="contact">
+        <div class="container">
+            <div class="section-header reveal" style="text-align: center; align-items: center;">
+                <span class="section-subtitle">Get In Touch</span>
+                <h2 class="section-title">Book Your Visit</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-form-wrapper glass-panel reveal-left delay-1">
+                    <h3>Send a Message</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="09827364344" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="3" placeholder="How can we help?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-blue">Submit <i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+
+                <div class="contact-info-wrapper reveal-right delay-2">
+                    <div class="info-card glass-panel">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h4>Visit Clinic</h4>
+                            <p>2a, Kolar Rd, Janki Nagar, Chuna Bhatti,<br>Bhopal, MP 462016</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card glass-panel">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <a href="tel:09827364344" style="font-weight: 600; color: var(--primary-blue);">09827364344</a>
+                        </div>
+                    </div>
+
+                    <div class="map-wrapper glass-panel">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14664.685422291603!2d77.42788035!3d23.2086476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c42786b4b7d05%3A0x6d0f6e8e2b8a4a2b!2sChuna%20Bhatti%2C%20Bhopal%2C%20Madhya%20Pradesh%20462016!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-logo reveal">
+                    <a href="#" class="logo">
+                        <i class="fa-solid fa-tooth"></i>
+                        <div>Dubey Dental</div>
+                    </a>
+                    <p>Expert, gentle dental care in Bhopal.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col reveal delay-1">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col reveal delay-2">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">General Dentistry</a></li>
+                        <li><a href="#">Orthodontics</a></li>
+                        <li><a href="#">Dental Implants</a></li>
+                        <li><a href="#">Teeth Whitening</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col reveal delay-3">
+                    <h4>Contact</h4>
+                    <ul style="color: #a0aec0; font-size: 13px;">
+                        <li style="display: flex; gap: 8px; margin-bottom: 8px;">
+                            <i class="fa-solid fa-location-dot" style="color: #7ec8e3;"></i>
+                            <span>Chuna Bhatti, Bhopal, MP</span>
+                        </li>
+                        <li style="display: flex; gap: 8px;">
+                            <i class="fa-solid fa-phone" style="color: #7ec8e3;"></i>
+                            <span>09827364344</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>© 2024 Dubey Dental Clinic.</div>
+                <div class="powered-by">Powered by <a href="https://kwanggroup.com" target="_blank" rel="noopener noreferrer">kwanggroup.com</a></div>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions & Animations -->
+    <script>
+        // 1. Fixed Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const icon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            if (mobileNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = ''; 
+            }
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileNav.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // 3. Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target); // Stop observing once animated for performance
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -30px 0px"
+        });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // 4. FAQ Accordion (Works independently of scroll reveal)
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove('active');
+                });
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
